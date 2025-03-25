@@ -1,13 +1,19 @@
-,n_punto,detalle,resultado
-0,1,Crea un DataFrame frutas que luzca así,
-1,2,,13
-2,3,,14
-3,4,,15
-4,5,,16
-5,6,,punto_5.csv
-6,7,,18
-7,8,,19
-8,9,,20
-9,10,,21
-10,11,,22
-11,12,,23
+n_punto,detalle,resultado
+1,Crea un DataFrame frutas que luzca así," Granadilla  Tomates
+         20       50"
+2,Crea un DataFrame ventas_frutas con los datos indicados,"             Granadilla  Tomates
+ventas 2021          20       50
+ventas 2022          49      100"
+3,Crea una Serie utensilios con los datos indicados,"Cuchara     3 unidades
+Tenedor     2 unidades
+Cuchillo    4 unidades
+Plato       5 unidades"
+4,,0
+5,,16
+6,,punto_5.csv
+7,,18
+8,,19
+9,,20
+10,,21
+11,,22
+12,,23

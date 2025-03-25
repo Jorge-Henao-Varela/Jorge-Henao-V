@@ -12,6 +12,7 @@ setup(
         "numpy",
         "pandas",
         "openpyxl",
-        "requests"
+        "requests",
+        "kagglehub"
     ]
 ) 
