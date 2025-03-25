@@ -5,7 +5,7 @@ import os
 class actividad3:
     def __init__(self):
         self.ruta_raiz = os.path.abspath(os.getcwd())
-        self.ruta_act2 = "{}/src/pad20251/actividad_3/".format(self.ruta_raiz)
+        self.ruta_act2 = "{}/src/ejercicios/actividad_3/".format(self.ruta_raiz)
         datos = {
             "n_punto": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
             "detalle": ["Crea un DataFrame frutas que luzca así", "", "", "", "", "", "", "", "", "", "", ""],
@@ -16,8 +16,9 @@ class actividad3:
         print(self.ruta_raiz)
 
     def punto_1(self):
-        self.df.loc[0, "resultado"] = len(self.df) + 0
-        print("punto_1")
+        df_frutas = pd.DataFrame([[20, 50]], columns=["Granadilla", "Tomates"])
+        self.df.loc[0, "resultado"] = df_frutas 
+        print(df_frutas)
 
     def punto_2(self):
         self.df.loc[1, "resultado"] = len(self.df) + 1
