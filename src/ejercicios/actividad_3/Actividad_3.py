@@ -13,7 +13,7 @@ class Actividad3:
         datos = {
             "n_punto": list(range(1, 13)),
             "detalle": [
-                "Crea un DataFrame frutas que luzca así",
+                "Crea un DataFrame frutas que luzca así ",
                 "Crea un DataFrame ventas_frutas con los datos indicados",
                 "Crea una Serie utensilios con los datos indicados",
                 "Descarga el dataset 'wine review' desde Kaggle y cárgalo en un DataFrame llamado review, tal y como se muestra en la figura.",
