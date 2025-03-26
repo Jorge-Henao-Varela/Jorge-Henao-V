@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-from scipy.stats import gaussian_kde
+#from scipy.stats import gaussian_kde
 
 class Actividad2:
     def __init__(self):
@@ -122,22 +122,22 @@ class Actividad2:
         plt.show()
         self.resultados.append(("Ejercicio 13", "Gráfico guardado en " + grafico_path)) 
 
-    def ejercicio_14(self):
-        x = np.random.rand(1000)
-        y = np.random.rand(1000)
-        xy = np.vstack([x, y])
-        densidad = gaussian_kde(xy)(xy)
+    # def ejercicio_14(self):
+    #     x = np.random.rand(1000)
+    #     y = np.random.rand(1000)
+    #     xy = np.vstack([x, y])
+    #     densidad = gaussian_kde(xy)(xy)
         
-        plt.scatter(x, y, c=densidad, cmap='plasma', alpha=0.5)
-        plt.colorbar(label='Densidad')
-        plt.xlabel("Eje X")
-        plt.ylabel("Eje Y")
-        plt.title("Gráfico de Dispersión con Densidad de Puntos")
+    #     plt.scatter(x, y, c=densidad, cmap='plasma', alpha=0.5)
+    #     plt.colorbar(label='Densidad')
+    #     plt.xlabel("Eje X")
+    #     plt.ylabel("Eje Y")
+    #     plt.title("Gráfico de Dispersión con Densidad de Puntos")
         
-        grafico_path = os.path.join(self.output_dir, "grafico_densidad.png")
-        plt.savefig(grafico_path)
-        plt.show()
-        self.resultados.append(("Ejercicio 14", "Gráfico guardado en " + grafico_path)) 
+    #     grafico_path = os.path.join(self.output_dir, "grafico_densidad.png")
+    #     plt.savefig(grafico_path)
+    #     plt.show()
+    #     self.resultados.append(("Ejercicio 14", "Gráfico guardado en " + grafico_path)) 
 
     def ejercicio_15(self):
         x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
