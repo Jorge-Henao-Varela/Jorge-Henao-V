@@ -27,10 +27,12 @@ jobs:
         run: pip install --upgrade pip
       - name: paso4 - instalar dependencias
         run: pip install -e .
-      - name: paso5 - Ejecutar script
+      - name: paso5 - Ejecutar Actividad 2
         run: python src/ejercicios/actividad_2/actividad_2.py 
-      - name: paso6 - Ejecutar script
+      - name: paso6 - Ejecutar Actividad 3
         run: python src/ejercicios/actividad_3/actividad_3.py 
+      - name: paso7 - Ejecutar Actividad Final
+        run: python src/ejercicios/actividad_final.ipynb
 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
