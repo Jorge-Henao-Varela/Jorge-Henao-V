@@ -1,0 +1,73 @@
+import pandas as pd
+
+def procesar_linderos(archivo_excel, hoja="Hoja1", fila_encabezados=2, salida_txt="Linderos_Descripcion.txt"):
+    try:
+        # Leer el archivo Excel
+        df = pd.read_excel(archivo_excel, sheet_name=hoja, skiprows=fila_encabezados)
+        df.columns = ['Del', 'Al', 'Distancia', 'Vertice', 'X', 'Y', 'Colindante', 'Direccion', 'Lindero']
+
+        # Eliminar filas sin información de lindero
+        df = df.dropna(subset=['Lindero'])
+
+        # Convertir columnas relevantes a numéricas
+        df['Del'] = pd.to_numeric(df['Del'], errors='coerce')
+        df['Al'] = pd.to_numeric(df['Al'], errors='coerce')
+        df['Distancia'] = pd.to_numeric(df['Distancia'], errors='coerce')
+        df['X'] = pd.to_numeric(df['X'], errors='coerce')
+        df['Y'] = pd.to_numeric(df['Y'], errors='coerce')
+
+        # Eliminar filas con valores nulos críticos
+        df = df.dropna(subset=['Del', 'Al', 'Distancia', 'X', 'Y'])
+
+        # Agrupar por lindero
+        linderos = df.groupby('Lindero')
+
+        # Construcción del texto por lindero
+        def construir_texto_lindero(nombre, grupo):
+            texto = f"{nombre}\n"
+            puntos = grupo.reset_index(drop=True)
+
+            punto_inicial = int(puntos.loc[0, 'Del'])
+            x_ini = puntos.loc[0, 'X']
+            y_ini = puntos.loc[0, 'Y']
+            direccion = puntos.loc[0, 'Direccion']
+            colindante = puntos.loc[0, 'Colindante']
+            punto_final = int(puntos.loc[len(puntos) - 1, 'Al'])
+            x_fin = puntos.loc[len(puntos) - 1, 'X']
+            y_fin = puntos.loc[len(puntos) - 1, 'Y']
+            distancia_total = puntos['Distancia'].sum()
+
+            texto += (f"Punto Nro {punto_inicial} con coordenadas planas E= {x_ini:.3f} m "
+                      f"N= {y_ini:.3f} m, en dirección {direccion} y en una distancia "
+                      f"{distancia_total:.2f} m, hasta encontrar el punto {punto_final} "
+                      f"Coordenadas planas E= {x_fin:.3f} m, N= {y_fin:.3f} m, pasando por los ")
+
+            # Agregar todos los puntos intermedios (excepto el inicial)
+            for i in range(1, len(puntos)):
+                punto = puntos.loc[i]
+                texto += (f"puntos {int(punto['Del'])} Coordenadas planas E= {punto['X']:.3f} m, "
+                          f"N= {punto['Y']:.3f} m, ")
+
+            texto += f"Colindando con {colindante}.\n\n"
+            return texto
+
+        # Construcción del archivo completo
+        texto_completo = ""
+        for nombre, grupo in linderos:
+            texto_completo += construir_texto_lindero(nombre, grupo)
+
+        # Guardar en archivo de texto
+        with open(salida_txt, "w", encoding="utf-8") as f:
+            f.write(texto_completo)
+
+        print(f"✅ Archivo generado correctamente: {salida_txt}")
+        return salida_txt
+
+    except Exception as e:
+        print(f"❌ Error procesando el archivo: {e}")
+
+# 👉 Llamada de ejemplo
+if __name__ == "__main__":
+    jls_extract_var = "/content/Datos Tecnicos Lote 12.xlsx"
+    ruta_excel = jls_extract_var  # Cambia esta ruta por la correcta
+    procesar_linderos(ruta_excel)
